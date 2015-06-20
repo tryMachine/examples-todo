@@ -1,6 +1,6 @@
 $(function() {
-  var auth = btoa(JSON.stringify({auth:'f622a6ef5ecaae5eb92ade261e4cd369cfdcedbf', token: '126cff9959daef49af3365f1eafe3ccfbc7a08a4'}));
-  var machine = Machinary('http://localhost:15036', auth, ['raw', 'user', 'user.login', 'user.register']);
+  var auth = btoa(JSON.stringify({auth:'<your-auth>', token: '<your-token>'}));
+  var machine = Machinary('<your-trymachines-api-url>', auth, ['raw', 'user', 'user.login', 'user.register']);
 
   $('body').on('submit', '#register-form', function() { //on register form submit call this function
     var _name = $("#register-form [name=name]").val(); //Get name form form
