@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.checked {
+  text-decoration: line-through;
+}
+#tasks {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px 5px;
+}
+#tasks input[type=text]{
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #888;
+}
+#tasks li {
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 16x;
+  padding: 4px 0px;
+}
+#task-list input {
+  margin-right: 10px;
+}
+#register, #login {
+  margin:0 auto;
+  padding: 20px 10px;
+  max-width: 300px;
+  font-size: 20px;
+}
+#register input:not([type=submit]), #login input:not([type=submit]) {
+  width: 100%;
+  padding: 5px;
+  border: 1px #ddd solid;
+}
+input[type=submit] {
+  margin-top: 10px;
+  border: 1px #ddd solid;
+  font-size: 20px;
+  padding: 5px 20px;
+}

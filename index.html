@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+	<header>
+    	<title>ToDo Lists</title>
+				<link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-git2.min.js"></script>
+    		<script src="https://cdn.machinary.ninja/machinary.min.js"></script>
+        <script src="todo.js"></script>
+    </header>
+    <body>
+      <div id="register">
+      	<form id="register-form">
+          <h2>Registering a User</h2>
+          Name:
+          <input type="text" name="name" required>
+          Username:
+          <input type="text" name="username" required>
+          Password:
+          <input type="password" name="password" required>
+          <br>
+          <input type="submit" value="Register">
+        </form>
+      </div>
+			<div id="login">
+				<form id="login-form">
+					<h2>User Login</h2>
+					Username:
+			    <input type="text" name="username" required>
+			    Password:
+			    <input type="password" name="password" required>
+			    <br>
+			    <input type="submit" value="Login">
+				</form>
+			</div>
+			<div id="tasks">
+				<div>
+					<form id="add-task">
+						<input type="text" name="task" placeholder="What needs to be done? (press enter)">
+					</form>
+				</div>
+				<ul id="task-list"></ul>
+			</div>
+    </body>
+</html>
