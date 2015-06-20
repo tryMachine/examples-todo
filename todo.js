@@ -43,9 +43,8 @@ $(function() {
     }, function(result) {
       console.log(result);
       if(!result.error) {
-        localStorage.setItem('user.token', JSON.stringify(result.user.token));
-        user_logged();
-        //machine.cookies.save('user.token', result.user.token);
+        localStorage.setItem('user.token', JSON.stringify(result.user.token)); //Save user's token
+        user_logged(); //Call user_logged function
       } else {
         alert('Username and/or Password wrong!');
       }
@@ -59,47 +58,46 @@ $(function() {
       var machine_object = {
                         query: {
                             enableUser: true, //save user id on post data;
-                            user: JSON.parse(localStorage.getItem('user.token')) //machine.cookies('user.token')
+                            user: JSON.parse(localStorage.getItem('user.token')) //Get user's token and send to the API
                         },
                         body:  {
-                            task: _task,
-                            done: false
+                            task: _task, //save on raw module a task name
+                            done: false //save on raw module if the task it's done or not
                         }
                     };
-      machine.once('user/raw', 'post',  machine_object, function(result) {
+      machine.once('user/raw', 'post',  machine_object, function(result) { //calls user and raw module.
         $("#task-list").prepend('<li data-id="'+result.generated_keys[0]+'">'+
                                 '<input type="checkbox" class="done" value="'+result.generated_keys[0]+'">'+
                                 _task+
-                                '</li>');
+                                '</li>'); //Display a task when inserted on database (raw module).
       });
       return false;
   });
   $('body').on('change', '.done', function() {
   var machine_object = {
                     query: {
-                        id: $(this).val()
+                        id: $(this).val() //select an entry from server
                     },
-                    body: {}
+                    body: {} //this object is where we set the data that should be updated or added
                 };
     if($(this).is(":checked")) {
       $('[data-id='+$(this).val()+']').addClass('checked');
-      machine_object.body.done = true;
+      machine_object.body.done = true; //set task done
       machine.update('user/raw', machine_object);
     } else {
       $('[data-id='+$(this).val()+']').removeClass('checked');
-      machine_object.body.done = false;
-      machine.update('user/raw', machine_object);
+      machine_object.body.done = false; //set the task undone
+      machine.update('user/raw', machine_object); //send to API machine_object and update object;
     }
   });
-  var user_logged = function() {
-
+  var user_logged = function() { //this function will be called when a user is logged
     $('#register, #login').hide();
     $('#tasks').show();
 
     var machine_object = {
                       query: {
                           enableUser: true, //save user id on post data;
-                          user: JSON.parse(localStorage.getItem('user.token')) //machine.cookies('user.token')
+                          user: JSON.parse(localStorage.getItem('user.token')) //Get user's token and send to the API
                       }
                   };
     machine.once('user/raw', 'get', machine_object, function(result) {
@@ -113,12 +111,12 @@ $(function() {
       }
     });
   }
-  var user_not_logged = function() {
+  var user_not_logged = function() { //this function will be called when a user is not logged
     $('#register, #login').show();
     $('#tasks').hide();
   }
-  if(localStorage.getItem('user.token') === null)
-    user_not_logged();
-  else
+  if(localStorage.getItem('user.token') != null) //check if user is logged
     user_logged();
+  else //when user is not logged call user_not_logged function
+    user_not_logged();
 });
